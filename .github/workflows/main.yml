@@ -6,10 +6,10 @@ jobs:
     steps: 
       - name: Checkout the repository 
         uses: actions/checkout@v2 
-      - name: Set up JDK 14  
+      - name: Set up JDK 11  
         uses: actions/setup-java@v1 
         with: 
-          java-version: 11
+          java-version: 11//此处的JDK版本要同maven pom.xml文件中一致 
       - name: Cache Maven packages 
         uses: actions/cache@v2 
         with: 
@@ -17,4 +17,4 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }} 
           restore-keys: ${{ runner.os }}-m2 
       - name: Run tests with Maven 
-        run: mvn -B test --file pom.xml  
+        run: mvn -B test --file pom.xml //这里具体到自己的pom.xml文件位置 
